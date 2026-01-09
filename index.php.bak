@@ -1,0 +1,125 @@
+<?php
+session_start();
+require_once 'config.php';
+
+// If already logged in, redirect to dashboard
+if (isset($_SESSION['user_id'])) {
+    if ($_SESSION['role'] === 'admin') {
+        header('Location: dashboard_admin.php');
+    } else {
+        header('Location: dashboard_staf.php');
+    }
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Jadwal Turun Lapangan - Kecamatan</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .landing-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .feature-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .feature-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        .cta-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .footer {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>📅 Sistem Jadwal Turun Lapangan</h1>
+                <p>Platform digital untuk mengelola dan memantau jadwal kegiatan turun lapangan di Kecamatan</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>👨‍💼 Admin</h3>
+                        <p>Kelola jadwal, tambah/edit/hapus kegiatan, dan pantau status turun lapangan staf</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>👥 Staf</h3>
+                        <p>Lihat jadwal tugas, konfirmasi kehadiran, dan update laporan kegiatan</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 Terintegrasi</h3>
+                        <p>Sistem terpusat untuk koordinasi yang lebih baik antar tim di kantor kecamatan</p>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="login.php" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px;">
+                        Masuk ke Sistem
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; <?php echo date('Y'); ?> Sistem Jadwal Turun Lapangan - Kecamatan</p>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">
+                Dibangun dengan PHP Native untuk kemudahan dan keamanan
+            </p>
+        </div>
+    </div>
+</body>
+</html>
